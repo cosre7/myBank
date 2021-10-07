@@ -9,7 +9,8 @@
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
-	<!-- Enables the Spring MVC @Controller programming model -->
+	<!-- Enables the Spring MVC @Controller programming model 
+		 자바 애너테이션을 통한 설정 메타데이터 방법-->
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
@@ -23,6 +24,17 @@
 	
 	<context:component-scan base-package="com.ts.myBank" />
 	
+	<!-- 
+		xml을 통한 설정 메타데이터 방법
+		
+	<beans ...>
+		<bean id="fdController" class="sample.spring.controller.FixedDepositController">
+			<constructor-arg ref="fdService" /> // 생성자 주입을 통해 fdService 객체에 의존한다.
+		</bean>
+		
+		<bean id="fdService" class="sample.spring.service.FixedDepositService"/>
+	<beans>
+	 -->
 	
 	
 </beans:beans>

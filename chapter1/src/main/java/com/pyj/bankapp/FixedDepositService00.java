@@ -1,10 +1,10 @@
-package com.ts.myBank.service;
+package src.main;
 
-import org.springframework.jmx.export.annotation.ManagedOperation;
-import org.springframework.jmx.export.annotation.ManagedResource;
-
-@ManagedResource(objectName = "fixed_deposit_service:name=FixedDepositService") // 예제 1-9
-public class FixedDepositService {
+/*
+ * FixedDepositDetails 객체에는 정기 예금 정보가 들어있다. 
+ * */
+//@ManagedResource(objectName = "fixed_deposit_service:name=FixedDepositService") // 예제 1-9
+public class FixedDepositService00 {
 
 //	public FixedDepositDetails getFixedDepositDetails() {}
 	
@@ -68,25 +68,49 @@ public class FixedDepositService {
 	 * 서버에 등록하고 내부의 activateService와 deactivateService 메서드를 JMX 연산으로 노출시킨다.
 	 * - JMX API를 직접 사용하지 않고도 FixedDepositService가 자신의 메서드를 JMX 연산으로 노출시킬 수 있다.
 	 * */
-	private boolean active;
+//	private boolean active;
+//	
+//	public FixedDepositDetails getFixedDepositDetails() {
+//		if(active) {}
+//	}
+//	
+//	public boolean createFixedDeposit(FixedDepositDetails fixedDepositDetails) {
+//		if(active) {}
+//	}
+//	
+//	@ManagedOperation
+//	public void activateService() {
+//		active = true;
+//	}
+//	
+//	@ManagedOperation
+//	public void deactivateService() {
+//		active = false;
+//	}
 	
-	public FixedDepositDetails getFixedDepositDetails() {
-		if(active) {}
-	}
+	// 예제 1-10. JMS 메시지를 보내는 FixedDepositService
+	/*
+	 * JMS(Java Message Service)를 사용하면 JMS 제공자에게 메시지를 받거나 보낼 수 있다.
+	 * - 고객이 정보를 전자우편으로 받고 싶다는 요청을 보내면 FixedDepositService는 요청의 상세 정보를
+	 *   JMS 메시징 미들웨어에 보내고 나중에 메시지 리스너로 처리된다.
+	 * */
+//	@Autowired
+//	private transient JmsTemplate jmsTemplate;
+//	
+//		public boolean submitRequest(Request request) {
+//			jmsTemplate.convertAndSend(request);
+//		}
 	
-	public boolean createFixedDeposit(FixedDepositDetails fixedDepositDetails) {
-		if(active) {}
-	}
+	// 예제 1-11. 정기 예금의 상세 정보를 캐시하는 FixedDepositService
+	/*
+	 * 스프링의 캐시 추상화를 사용하면 애플리케이션에서 일관성 있게 캐시를 사용할 수 있다.
+	 * - MyBank 애플리케이션은 상용 캐시 솔루션을 사용해 정기 예금 상세 정보에 대한 읽기 연산 성능을 향상시킨다.
+	 * */
 	
-	@ManagedOperation
-	public void activateService() {
-		active = true;
-	}
-	
-	@ManagedOperation
-	public void deactivateService() {
-		active = false;
-	}
+	// getFixedDepositDetails 메서드가 스프링의 캐시 추상화 기능을 사용해 정기 예금의 상세 정보를 캐시
+//	@Cacheable("fixedDeposits") // getFixedDepositDetails 메서드가 반환하는 정기 예금 정보를 캐시에 저장
+//	public FixedDepositDetails getFixedDepositDetails() {}
+//	public boolean createFixedDeposit(FixedDepositDetails fixedDepositDetails) {}
 	
 	
 }

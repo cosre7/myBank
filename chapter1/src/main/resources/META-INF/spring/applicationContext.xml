@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- <beans> 엘리먼트 - XML 파일의 루트 엘리먼트로 beans.xsd 스키마에서 정의한다. 	  -->
+
+	<!-- - 각 <bean> 엘리먼트는 스프링 컨테이너가 관리할 애플리케이션 객체를 설정한다.
+		 - <bean> 엘리먼트 = 빈 정의(bean definition)
+		 - 스프링 컨테이너가 빈 정의에 따라 만들어내는 객체 = 빈 
+		 - 각 애플리케이션 객체 당 하나의 <bean> 존재 
+		 - <bean> 엘리먼트로 설정되는 애플리케이션 객체는 스프링 컨테이너가 관리하므로 이들을 생성하고 의존 관계를
+		   주입할 책임도 스프링 컨테이너에 있다.
+		   - <bean> 엘리먼트로 정의된 객체를 사용하려면 직접 생성하지 말고 스프링 컨테이너로부터 빈을 얻어서 사용해야 한다.
+		 - myBank 애플리케이션의 FixedDepositDetails 도메인 객체에는 <bean> 엘리먼트 정의가 없다. 
+		   일반적으로 스프링 컨테이너는 도메인 객체를 관리하지 않는다.
+		   - 도메인 객체는 직접 new 연산자를 사용해 생성한다.
+		-->
+	<bean id="controller" class="sample.spring.chapter01.bankapp.FixedDepositController">
+		<!-- id 속성 : 빈의 유일한 이름을 지정
+		     class 속성 : 빈 클래스의 전체 이름을 지정
+		     (선택사항) name 속성 : 빈에 별명 지정 -->
+		<property name="fixedDepositService" ref="service" />
+		<!-- - <property> 엘리먼트는 <bean> 엘리먼트가 설정하는 빈의 의존 관계(또는 설정 프로퍼티)를 지정한다.
+		     - <property> 엘리먼트는 스프링 컨테이너가 의존 관계를 설정하기 위해 호출할 자바빈 스타일 세터 메서드와 대응된다.
+		     - name 속성은 빈의 자바빈 스타일 세터 메서드를 가리킨다.
+		       - 세터 메서드는 ref 속성이 가리키는 빈의 타입과 같은 타입의 인수를 받는다.
+		       - FixedDepositController의 setFixedDepositService 메서드
+		     - ref 속성은 설정 메타데이터 안에 있는 다른 빈을 가리킨다.
+		       - 여기서 참조하는 빈이 name 속성에 대응하는 자바빈 스타일 세터 메서드에 전달된다.
+		       - <bean id="service" ~~> 을 가리킴 -->
+		       
+       <!-- FixedDepositController 빈이 <property> 엘리먼트를 통해 FixedDepositService 빈에 의존한다. -->
+	</bean>
+	
+	<bean id="service" class="sample.spring.chapter01.bankapp.FixedDepositService">
+		<property name="fixedDepositDao" ref="dao" />
+	</bean>
+	
+	<bean id="dao" class="sample.spring.chapter01.bankapp.FixedDepositDao"/>
+</beans>

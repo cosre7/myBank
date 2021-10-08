@@ -1,9 +1,13 @@
-package com.ts.myBank.controller;
+package com.pyj.bankapp;
 
-public class FixedDepositController {
+/*
+ * 제출한 폼을 전달받는 웹 컨트롤러
+ * - FixedDepositService에 createFixedDeposit 메서드 호출
+ * */
+public class FixedDepositController00 {
 
 	// FixedDepositController가 FixedDepositService에 의존하고있다.
-	private FixedDepositService fixedDepositService;
+	private FixedDepositService00 fixedDepositService;
 	
 	
 //	예제 1-1
@@ -16,7 +20,7 @@ public class FixedDepositController {
 //	}
 	
 	// 예제 1-2
-	public FixedDepositController(FixedDepositService fixedDepositService) {
+	public FixedDepositController00(FixedDepositService00 fixedDepositService) {
 		// FixedDepositService 인스턴스가 FixedDepositController 인스턴스의 생성자 인수로 전달 
 		// -> FixedDepositController 클래스를 스프링 빈으로 설정할 수 있다.
 		// -> FixedDepositController가 스프링의 어떤 인터페이스나 클래스를 구현하거나 확장하지 않는다.
@@ -27,8 +31,8 @@ public class FixedDepositController {
 		this.fixedDepositService = fixedDepositService;
 	}
 	
-	public boolean submit() {
-		//-- 정기 예금의 상세 정보 저장
-		fixedDepositService.save();
-	}
+//	public boolean submit() {
+//		//-- 정기 예금의 상세 정보 저장
+////		fixedDepositService.save();
+//	}
 }

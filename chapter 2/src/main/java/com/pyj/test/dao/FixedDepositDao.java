@@ -1,6 +1,6 @@
-package com.pyj.test.dao;
+package com.pyj.bankapp.dao;
 
-import com.pyj.test.domain.FixedDepositDetails;
+import com.pyj.bankapp.domain.FixedDepositDetails;
 
 public interface FixedDepositDao {
 	FixedDepositDetails getFixedDepositDetails(long id);

@@ -1,4 +1,4 @@
-package com.pyj.test.domain;
+package com.pyj.bankapp.domain;
 
 public class FixedDepositDetails {
 	private long id;

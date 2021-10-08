@@ -1,10 +1,10 @@
-package com.pyj.test.dao;
+package com.pyj.bankapp.dao;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.LogManager;
 
-import com.pyj.test.domain.FixedDepositDetails;
+import com.pyj.bankapp.domain.FixedDepositDetails;
 
 public class FixedDepositHibernateDao implements FixedDepositDao {
 	private static Logger logger = LogManager.getLogger(FixedDepositHibernateDao.class);

@@ -1,7 +1,7 @@
-package com.pyj.test.controller;
+package com.pyj.bankapp.controller;
 
-import com.pyj.test.domain.FixedDepositDetails;
-import com.pyj.test.service.FixedDepositService;
+import com.pyj.bankapp.domain.FixedDepositDetails;
+import com.pyj.bankapp.service.FixedDepositService;
 
 public interface FixedDepositController {
 	FixedDepositService getFixedDepositService();

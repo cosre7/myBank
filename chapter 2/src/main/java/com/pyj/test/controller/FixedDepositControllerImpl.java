@@ -1,7 +1,9 @@
-package com.pyj.test.controller;
+package com.pyj.bankapp.controller;
 
-import com.pyj.test.domain.FixedDepositDetails;
-import com.pyj.test.service.FixedDepositService;
+import java.util.logging.LogManager;
+
+import com.pyj.bankapp.domain.FixedDepositDetails;
+import com.pyj.bankapp.service.FixedDepositService;
 
 public class FixedDepositControllerImpl implements FixedDepositController {
 	private static Logger logger = LogManager.getLogger(FixedDepositControllerImpl.class);

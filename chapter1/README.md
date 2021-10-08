@@ -70,4 +70,11 @@
 예제 1-15 BankApp 클래스   
 ```       
 
-- MyBank 애플리케이션의 applicationContext.xml에 정의된 빈은 싱글턴 스코프이며 사전-인스턴스화로 설정되었다. -> applicationContext.xml에 정의된 빈이 ClassPathXmlApplicationContext가 인스턴스화될 때 생성된다는 뜻
+- MyBank 애플리케이션의 applicationContext.xml에 정의된 빈은 싱글턴 스코프이며 사전-인스턴스화로 설정되었다.   
+	-> applicationContext.xml에 정의된 빈이 ClassPathXmlApplicationContext가 인스턴스화될 때 생성된다는 뜻
+	
+### 1.5.6 스프링 컨테이너에 있는 빈에 접근하기
+- <bean> 엘리먼트를 통해 정의된 애플리케이션 객체는 스프링 컨테이너로 생성, 관리한다.   
+```   
+예제 1-16. BankApp 클래스   
+```   

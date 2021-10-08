@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="controller" class="com.pyj.test.controller.FixedDepositControllerImpl">
+		<property name="fixedDepositService" ref="service"/>
+	</bean>
+	
+	<bean id="service" class="com.pyj.test.service.FixedDepositServiceImpl">
+		<property name="fixedDepositDao" ref="dao" />
+	</bean>
+	
+	<!-- FixedDepositDao 인터페이스의 구현 중 FixedDepositHibernateDao를 FixedDepositServiceImpl에 주입 -->
+	<bean id="dao" class="com.pyj.test.dao.FixedDepositHibernateDao"/>
+</beans>

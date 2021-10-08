@@ -29,5 +29,21 @@
 
 ### 2.3.1 정적 팩토리 메서드로 빈 초기화하기
 ```
-예제 2-3. FixedDepositDaoFactory 클래스
+예제 2-3. FixedDepositDaoFactory 클래스   
+예제 2-4. FixedDepositDaoFactory 클래스를 사용하는 빈 정의   
+예제 2-5. 정적 팩토리 메서드가 만든 객체 주입하기    
+```   
+
+### 2.3.2 인스턴스 팩토리 메서드를 호출해 빈 초기화하기
+```
+예제 2-6. FixedDepositDaoFactory 클래스   
+예제 2-7. FixedDepositDaoFactory의 getFixedDepositDao 메서드를 호출하는 설정
+```
+- 정적 팩토리 메서드나 인스턴스 팩토리 메서드로 생성된 빈의 의존 관계를 설정하기 위해서는 의존 관계를 팩토리 메서드에 인수로 넘기거나 세터 기반의 DI를 사용해 주입할 수 있다.
+
+```
+예제 2-8. FixedDepositJdbcDao 클래스   
+예제 2-9. FixedDepositDaoFactory 클래스   
+예제 2-10. FixedDepositDaoFactory의 getFixedDepositDao 메서드를 호출하는 설정   
+예제 2-11. FixedDepositDaoFactory의 getFixedDepositDao 메서드를 호출하고, 호출이 반환하는 FixedDepositJdbcDao 인스턴스의 databaseInfo 프로퍼티를 설정하는 빈 설정   
 ```

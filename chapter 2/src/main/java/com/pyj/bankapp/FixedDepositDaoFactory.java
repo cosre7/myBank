@@ -2,19 +2,20 @@ package com.pyj.bankapp;
 
 import com.pyj.bankapp.dao.FixedDepositDao;
 import com.pyj.bankapp.dao.FixedDepositHibernateDao;
+import com.pyj.bankapp.dao.FixedDepositJdbcDao;
 
 /*
- * 정적 메서드에 전달된 인수를 기반으로 FixedDepositDao 인스턴스를 만들어 반환하고,
- * 정적 팩토리 메서드를 정의하는 FixedDepositDaoFactory 클래스
+ * 인스턴스 팩토리 메서드를 호출해 빈 초기화
+ * - 클래스가 인스턴스 팩토리 메서드를 정의한다면, 클래스에는 public 생성자가 정의돼야 한다.
+ *   -> 그래야만 스프링 컨테이너가 해당 클래스의 인스턴스를 생성할 수 있다.
  * */
 public class FixedDepositDaoFactory {
-	private FixedDepositDaoFactory() {}
+	public FixedDepositDaoFactory() {}
 	
 	/*
-	 * daoType의 인수값에 따라 FixedDepositHibernateDao, FixedDepositJdbcDao 클래스의 인스턴스 중
-	 * 하나를 만들어내는 getFixedDepositDao 정적 메서드
+	 * FixedDepositDao 인스턴스를 만들어서 반환하는 인스턴스 팩토리 메서드
 	 * */
-	public static FixedDepositDao getFixedDepositDao(String daoType) {
+	public FixedDepositDao getFixedDepositDao(String daoType) {
 		FixedDepositDao fixedDepositDao = null;
 		
 		if ("jdbc".equalsIgnoreCase(daoType)) {

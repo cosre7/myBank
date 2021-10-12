@@ -3,57 +3,22 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<!-- controller, service, dao 빈은 <bean> 엘리먼트 안에 scope 속성이 없으므로 싱글턴 스코프이다.
+		 - 싱글턴 스코프?
+		 	- 스프링 컨테이너가 FixedDepositControllerImpl, FixedDepositServiceImpl, FixedDepositDaoImpl
+		 	  클래스의 인스턴스를 단 하나씩만 만든다는 뜻
+		 	- scope 속성이 없거나 속성값이 singleton이면 해당 빈은 싱글턴 스코프 -->
 	<bean id="controller" class="com.pyj.bankapp.controller.FixedDepositControllerImpl">
 		<property name="fixedDepositService" ref="service"/>
 	</bean>
 
-	<!-- 스프링 컨테이너에서 FixedDepositDao 인스턴스를 가져오기 위해 FixedDepositDaoFactory의 
-	     getFixedDepositDao 메서드를 호출하는 방법 
-	     - 빈 정의는 FixedDepositDaoFactory의 getFixedDepositDao 메서드를 호출하고,
-	        이 호출은 FixedDepositJdbcDao 인스턴스를 만들어 반환한다.-->
-	     
-    <!-- - FixedDepositDaoFactory 클래스를 일반 스프링 빈으로 정의 -->
-	<bean id="daoFactory" class="com.pyj.bankapp.FixedDepositDaoFactory" />
-		
-	<!-- - 인스턴스 팩토리 메서드에 자세한 내용을 사용하는 빈 따로 정의 -->
-	<bean id="dao" factory-bean="daoFactory" factory-method="getFixedDepositDao">
-		<!-- - factory-bean : 인스턴스 팩토리 메서드가 들어 있는 빈의 이름을 지정
-			 - factory-method : 인스턴스 팩토리 메서드의 이름을 지정 -->
-		<constructor-arg index="0" value="jdbc"/>
-		<property name="databaseInfo" ref="databaseInfo"/>
-		<!-- FixedDepositJdbcDao의 databaseInfo 의존 관계를 설정하려면 getFixedDepositDao 메서드가
-		     반환하는 FixedDepositJdbcDao 인스턴스에 대해 세터 기반 ID를 property를 추가하여 수행한다
-		     - FixedDepositDaoFactory의 getFixedDepositDao 메서드를 호출하고,
-		       호출이 반환하는 FixedDepositJdbcDao 인스턴스의 databaseInfo 프로퍼티를 설정하는 빈 설정 -->
-       <!-- <property> 엘리먼트를 사용해 FixedDepositDaoFactory의 getFixedDepositDao 인스턴스 팩토리
-            메서드가 반환한 FixedDepositJdbcDao 인스턴스의 databaseInfo 프로퍼티를 설정한다. -->
-	</bean>
-	
 	<bean id="service" class="com.pyj.bankapp.service.FixedDepositServiceImpl">
 		<property name="fixedDepositDao" ref="dao" />
-		<!-- - <property> 엘리먼트 : FixedDepositDaoFactory의 getFixedDepositDao 팩토리 메서드가 반환하는
-		       FixedDepositDao 인스턴스를 FixedDepositServiceImpl 인스턴스에 주입한다. -->
+	</bean>
+
+	<bean id="dao" factory-bean="daoFactory" factory-method="getFixedDepositDao">
+
 	</bean>
 	
-	<bean id="personalBankService" class="PersonalBankService">
-		<constructor-arg index="0" ref="jmsMessageSender" />
-		<constructor-arg index="1" ref="emailMessageSender" />
-		<property name="webServiceInvoker" ref="webServiceInvoker" /> 
-	</bean>
 	
-	<bean id="jmsMessageSender" class="JmsMessageSender">
-	
-	</bean>
-	
-	<bean id="webServiceInvoker" class="WebServiceInvoker">
-	
-	</bean>
-	
-	<!-- 설정 정보(host, username, password)를 생성자 인수로 받는다. -->
-	<bean id="emailMessageSender" class="EmailMessageSender">
-		<constructor-arg index="0" value="smtp.gmail.com" />
-			<!-- value 속성은 index 속성이 가리키는 생성자 인수에 설정할 String 값 -->
-		<constructor-arg index="1" value="myusername" />
-		<constructor-arg index="2" value="mypassword" />
-	</bean>	
 </beans>

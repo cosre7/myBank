@@ -1,5 +1,6 @@
 package com.pyj.test;
 
+import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertSame;
 
 import org.junit.BeforeClass;
@@ -63,5 +64,36 @@ public class SingletonTest {
 		// ApplicationContext의 getBean 메서드를 사용해 FixedDepositDao 빈의 다른 인스턴스를 읽는다.
 		FixedDepositDao fixedDepositDao2 = (FixedDepositDao) context.getBean("dao");
 		assertSame("Different FixedDepositDao instances", fixedDepositDao1, fixedDepositDao2);
+	}
+	
+	/*
+	 * 서로 다른 스프링 컨테이너 인스턴스로부터 FixedDepositController 빈 인스턴스를 얻어서 그 둘이 같은지 비교
+	 * */
+	@Test
+	public void testSingletonScope() {
+		// 새로운 컨테이너를 만든다.
+		ApplicationContext anotherContext = new ClassPathXmlApplicationContext(
+				"classpath:META-INF/spring/applicationContext.xml");
+		
+		FixedDepositController fixedDepositController1 =
+				(FixedDepositController) anotherContext.getBean("controller");
+		
+		FixedDepositController fixedDepositController2 = 
+				(FixedDepositController) context.getBean("controller");
+		
+		assertNotSame("Same FixedDepositController instances",
+				fixedDepositController1, fixedDepositController2);
+		// 각 스프링 컨테이너는 자신만의 controller 빈 인스턴스를 만들어낸다.
+	}
+	
+	/*
+	 * dao와 anotherDao 빈 정의에 대응하는 FixedDepositDaoImpl 인스턴스가 같은지 검사
+	 * */
+	@Test
+	public void testSingletonScopePerBeanDef() {
+		// 스프링 컨테이너가 dao와 anotherDao 빈 정의로 생성한 인스턴스
+		FixedDepositDao fixedDepositDao1 = (FixedDepositDao) context.getBean("dao");
+		FixedDepositDao fixedDepositDao2 = (FixedDepositDao) context.getBean("anotherDao");
+		assertNotSame("Same FixedDepositDao instances", fixedDepositDao1, fixedDepositDao2);
 	}
 }

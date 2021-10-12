@@ -16,9 +16,14 @@
 		<property name="fixedDepositDao" ref="dao" />
 	</bean>
 
-	<bean id="dao" factory-bean="daoFactory" factory-method="getFixedDepositDao">
-
-	</bean>
+	<!-- scope 속성을 지정하지 않았기 때문에 모두 싱글턴 스코프 빈
+	     - 스프링 컨테이너는 dao와 anotherDao 빈 정의를 별개로 처리하여 빈 정의마다 FixedDepositDaoImpl 인스턴스가
+	       각각 하나씩 생긴다. -->
+	<bean id="dao" class="com.pyj.bankapp.dao.FixedDepositDaoImpl" />
+	<bean id="anotherDao" class="com.pyj.bankapp.dao.FixedDepositDaoImpl"/>
 	
-	
+	<!-- 싱글턴 빈 지연 생성 -->
+	<bean id="lazyBean" class="example.LazyBean" lazy-init="true" />
+		<!-- lazy-init 속성은 빈 인스턴스를 지연 생성할지 미리 생성할지를 지정
+		     - true라면 스프링 컨테이너는 빈을 처음 요청받는 즉시 인스턴스를 초기화 -->
 </beans>

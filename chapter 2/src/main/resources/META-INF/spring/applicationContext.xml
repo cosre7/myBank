@@ -50,7 +50,10 @@
 	</bean>
 	
 	<bean id="emailMessageSender" class="EmailMessageSender">
-	
+		<property name="host" value="smtp.gmail.com" />
+			<!-- value 속성은 name 속성이 정한 이름에 맞는 빈 프로퍼티의 String 값을 지정 -->
+		<property name="username" value="myusername"/>
+		<property name="password" value="mypassword"/>
 	</bean>
 	
 </beans>

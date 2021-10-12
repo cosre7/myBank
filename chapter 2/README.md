@@ -73,3 +73,9 @@
 예제 2-16. PersonalBankService 클래스
 예제 2-17. 생성자와 세터 기반 DI를 섞어서 사용하기
 ```
+
+## 2.5 설정 정보를 빈에 전달하기
+- 전자우편 인증에 필요한 서버 주소, 사용자 이름, 암호가 있는 EmailMessageSender 클래스
+```
+예제 2-18. EmailMessageSender 클래스와 빈 정의
+```

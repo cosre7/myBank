@@ -77,5 +77,6 @@
 ## 2.5 설정 정보를 빈에 전달하기
 - 전자우편 인증에 필요한 서버 주소, 사용자 이름, 암호가 있는 EmailMessageSender 클래스
 ```
-예제 2-18. EmailMessageSender 클래스와 빈 정의
+예제 2-18. EmailMessageSender 클래스와 빈 정의 - 세터 기반 DI
+예제 2-19. EmailMessageSender 클래스와 빈 정의 - 생성자 기반 DI
 ```

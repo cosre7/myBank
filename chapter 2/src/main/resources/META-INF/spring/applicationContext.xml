@@ -49,11 +49,11 @@
 	
 	</bean>
 	
+	<!-- 설정 정보(host, username, password)를 생성자 인수로 받는다. -->
 	<bean id="emailMessageSender" class="EmailMessageSender">
-		<property name="host" value="smtp.gmail.com" />
-			<!-- value 속성은 name 속성이 정한 이름에 맞는 빈 프로퍼티의 String 값을 지정 -->
-		<property name="username" value="myusername"/>
-		<property name="password" value="mypassword"/>
-	</bean>
-	
+		<constructor-arg index="0" value="smtp.gmail.com" />
+			<!-- value 속성은 index 속성이 가리키는 생성자 인수에 설정할 String 값 -->
+		<constructor-arg index="1" value="myusername" />
+		<constructor-arg index="2" value="mypassword" />
+	</bean>	
 </beans>

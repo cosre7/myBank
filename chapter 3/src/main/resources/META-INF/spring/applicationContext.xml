@@ -30,4 +30,24 @@
     <bean id="fixedDepositDetails" class="com.pyj.bankapp.domain.FixedDepositDetails" 
     	scope="prototype" />
     	<!-- scope 속성값을 prototype으로 설정 -> fixedDepositDetails 빈이 프로토타입 스코프 빈이라는 뜻 -->
+    	
+    <!-- DatabaseOperations 빈에 의존하는 DAO 빈
+         - 스프링 컨테이너는 PersonalBankDaoImpl과 FixedDepositDaoImpl 클래스에
+           setDatabaseOperations 메서드로 DatabaseOperations 인스턴스를 주입할 수 있다. -->
+   	<bean id="databaseOperations" class="com.pyj.bankapp.utils.DatabaseOperations" />
+   	
+   	<bean id="daoTemplate" abstract="true">
+   		<property name="databaseOperations" ref="databaseOperations" />
+   	</bean>
+   	
+   	<bean id="personalBankDao" parent="daoTemplate" class="com.pyj.bankapp.dao.PersonalBankDaoImpl" />
+   	
+   	<bean id="fixedDepositDao" parent="daoTemplate" class="com.pyj.bankapp.dao.FixedDepositDaoImpl" />
+   		<!-- personalBankDao와 FixedDepositDao 빈 정의의 공통 설정은 databaseOperations 프로퍼티 
+   		     -> 모두 databaseOperations 의존 관계가 필요하다.
+   		     - daoTemplate 빈 정의는 <property> 엘리먼트를 사용해 databaseOperations 의존 관계 정의
+   		     - <bean> 엘리먼트의 parent 속성은 설정을 상속할 빈 정의의 이름을 지정
+   		     - parent="daoTemplate" -> daoTemplate의 databaseOperations 프로퍼티를 상속
+   		     - <bean> 엘리먼트의 abstract 속성을 true로 만들면 그 빈이 추상빈이라는 뜻
+   		     - 스프링 컨테이너가 추상 빈 정의에 해당하는 빈은 생성하지 않는다.-->
 </beans>

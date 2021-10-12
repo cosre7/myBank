@@ -47,3 +47,18 @@
 예제 2-10. FixedDepositDaoFactory의 getFixedDepositDao 메서드를 호출하는 설정   
 예제 2-11. FixedDepositDaoFactory의 getFixedDepositDao 메서드를 호출하고, 호출이 반환하는 FixedDepositJdbcDao 인스턴스의 databaseInfo 프로퍼티를 설정하는 빈 설정   
 ```
+
+## 2.4 생성자 기반 DI
+- 스프링에서 의존 관계 주입은 빈의 생성자나 세터 메서드에 인수를 넘기는 방식으로 이루어진다.
+- 세터 기반 DI : 세터 메서드로 의존 관계를 주입하는 DI 기법
+	- <property> 엘리먼트를 사용해 빈 의존 관계를 설정
+- 생성자 기반 DI : 생성자 인수로 의존 관계를 전달하는 DI 기법
+
+### 2.4.1 세터 기반 DI 다시 보기
+```
+예제 2-12. PersonalBankService 클래스   
+예제 2-13. PersonalBankService 클래스와 의존 관계인 빈 정의
+```
+
+### 2.4.2 생성자 기반 DI
+- 생성자 기반 DI 에서는 빈의 의존 관계를 빈 클래스 생성자의 인수로 전달한다.

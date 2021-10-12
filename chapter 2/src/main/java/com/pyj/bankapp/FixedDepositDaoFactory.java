@@ -18,6 +18,8 @@ public class FixedDepositDaoFactory {
 	public FixedDepositDao getFixedDepositDao(String daoType) {
 		FixedDepositDao fixedDepositDao = null;
 		
+		// applicationContext.xml에 따라 빈 정의는 FixedDepositDaoFactory의 getFixedDepositDao 메서드를 호출
+		// -> 이 호출로 FixedDepositJdbcDao 인스턴스를 만들어 반환
 		if ("jdbc".equalsIgnoreCase(daoType)) {
 			fixedDepositDao = new FixedDepositJdbcDao();
 		}

@@ -62,3 +62,7 @@
 
 ### 2.4.2 생성자 기반 DI
 - 생성자 기반 DI 에서는 빈의 의존 관계를 빈 클래스 생성자의 인수로 전달한다.
+```
+예제 2-14. PersonalBankService 클래스
+예제 2-15. PersonalBankService 빈 정의
+```

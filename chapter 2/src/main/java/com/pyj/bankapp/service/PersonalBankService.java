@@ -9,16 +9,13 @@ public class PersonalBankService {
 	private EmailMessageSender emailMessageSender; // 전자우편 전송
 	private WebServiceInvoker webServiceInvoker; // 외부 웹 서비스 호출
 	
-	// 각 의존관계마다 세터 메서드를 정의
-	public void setJmsMessageSender(JmsMessageSender jmsMessageSender) {
+	// 생성자가 객체를 인수로 받는다.
+	public PersonalBankSercie(JmsMessageSender jmsMessageSender,
+							  EmailMessageSender emailMessageSender,
+							  WebServiceInvoker webServiceInvoker) {
+		
 		this.jmsMessageSender = jmsMessageSender;
-	}
-	
-	public void setEmailMessageSender(EmailMessageSender emailMessageSender) {
 		this.emailMessageSender = emailMessageSender;
-	}
-	
-	public void setWebServiceInvoker(WebServiceInvoker webServiceInvoker) {
 		this.webServiceInvoker = webServiceInvoker;
 	}
 	

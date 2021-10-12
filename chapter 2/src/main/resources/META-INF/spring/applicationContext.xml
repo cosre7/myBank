@@ -35,11 +35,16 @@
 		       FixedDepositDao 인스턴스를 FixedDepositServiceImpl 인스턴스에 주입한다. -->
 	</bean>
 	
-	<!-- PersonalBankService 빈 정의는 PersonalBankService 클래스의 의존 관계를 <property> 엘리먼트로 설정 -->
 	<bean id="personalBankService" class="PersonalBankService">
-		<property name="emailMessageSender" ref="emailMessageSender" />
-		<property name="jmsMessageSender" ref="jmsMessageSender" />
-		<property name="webServiceInvoker" ref="webServiceInvoker" /> 
+		<!-- <constructor-arg> 엘리먼트는 personalBankService 인스턴스의 생성자에 전달할 인수를 지정
+		     - index 속성은 생성자 인수의 순서
+		     - 생성자 인수 사이에 서로 상속 관계가 없다면 index 속성을 지정하지 않는다.
+		     - JMsMessageSender, EmailMessageSender, WebServiceInvoker 클래스가 모두 타입이 달라
+		       구분이 가능한 객체라면 index 속성을 설정할 필요가 없다. -->
+		<constructor-arg index="0" ref="jmsMessageSender" />
+			<!-- ref 속성 : 빈에 참조를 전달 -->
+		<constructor-arg index="1" ref="emailMessageSender" />
+		<constructor-arg index="2" ref="webServiceInvoker" /> 
 	</bean>
 	
 	<bean id="jmsMessageSender" class="JmsMessageSender">

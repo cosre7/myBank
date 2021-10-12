@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- controller, service, dao 빈은 <bean> 엘리먼트 안에 scope 속성이 없으므로 싱글턴 스코프이다.
+		 - 싱글턴 스코프?
+		 	- 스프링 컨테이너가 FixedDepositControllerImpl, FixedDepositServiceImpl, FixedDepositDaoImpl
+		 	  클래스의 인스턴스를 단 하나씩만 만든다는 뜻
+		 	- scope 속성이 없거나 속성값이 singleton이면 해당 빈은 싱글턴 스코프 -->
+	<bean id="controller" class="com.pyj.bankapp.controller.FixedDepositControllerImpl">
+		<property name="fixedDepositService" ref="service"/>
+	</bean>
+
+	<bean id="service" class="com.pyj.bankapp.service.FixedDepositServiceImpl">
+		<property name="fixedDepositDao" ref="dao" />
+	</bean>
+
+	<!-- scope 속성을 지정하지 않았기 때문에 모두 싱글턴 스코프 빈
+	     - 스프링 컨테이너는 dao와 anotherDao 빈 정의를 별개로 처리하여 빈 정의마다 FixedDepositDaoImpl 인스턴스가
+	       각각 하나씩 생긴다. -->
+	<bean id="dao" class="com.pyj.bankapp.dao.FixedDepositDaoImpl" />
+	<bean id="anotherDao" class="com.pyj.bankapp.dao.FixedDepositDaoImpl"/>
+	
+	<!-- 싱글턴 빈 지연 생성 -->
+	<bean id="lazyBean" class="example.LazyBean" lazy-init="true" />
+		<!-- lazy-init 속성은 빈 인스턴스를 지연 생성할지 미리 생성할지를 지정
+		     - true라면 스프링 컨테이너는 빈을 처음 요청받는 즉시 인스턴스를 초기화 -->
+		     
+    <bean id="fixedDepositDetails" class="com.pyj.bankapp.domain.FixedDepositDetails" 
+    	scope="prototype" />
+    	<!-- scope 속성값을 prototype으로 설정 -> fixedDepositDetails 빈이 프로토타입 스코프 빈이라는 뜻 -->
+</beans>

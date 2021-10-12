@@ -66,3 +66,10 @@
 예제 2-14. PersonalBankService 클래스
 예제 2-15. PersonalBankService 빈 정의
 ```
+
+### 생성자 기반 DI와 세터 기반 DI를 함께 사용하기
+- 빈 클래스에 생성자와 세터 기반 DI 메커니즘이 함께 필요하다면 <constructor-arg>와 <property> 엘리먼트를 조합해 의존 관계를 주입할 수 있다.
+```
+예제 2-16. PersonalBankService 클래스
+예제 2-17. 생성자와 세터 기반 DI를 섞어서 사용하기
+```

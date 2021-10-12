@@ -9,14 +9,18 @@ public class PersonalBankService {
 	private EmailMessageSender emailMessageSender; // 전자우편 전송
 	private WebServiceInvoker webServiceInvoker; // 외부 웹 서비스 호출
 	
-	// 생성자가 객체를 인수로 받는다.
+	// 의존 관계를 생성자 인수와 세터 메서드 인수로 주입한다.
+	// 1. 생성자 인수로 주입
 	public PersonalBankSercie(JmsMessageSender jmsMessageSender,
-							  EmailMessageSender emailMessageSender,
-							  WebServiceInvoker webServiceInvoker) {
+							  EmailMessageSender emailMessageSender) {
 		
 		this.jmsMessageSender = jmsMessageSender;
 		this.emailMessageSender = emailMessageSender;
-		this.webServiceInvoker = webServiceInvoker;
 	}
-	
+
+	// 2. 세터 메서드 인수로 주입
+	public void setWebServiceInvoker(WebServiceInvoker webServiceInvoker) {
+		this.webServiceInvoker = webServiceInvoker;
+		
+	}
 }

@@ -36,15 +36,9 @@
 	</bean>
 	
 	<bean id="personalBankService" class="PersonalBankService">
-		<!-- <constructor-arg> 엘리먼트는 personalBankService 인스턴스의 생성자에 전달할 인수를 지정
-		     - index 속성은 생성자 인수의 순서
-		     - 생성자 인수 사이에 서로 상속 관계가 없다면 index 속성을 지정하지 않는다.
-		     - JMsMessageSender, EmailMessageSender, WebServiceInvoker 클래스가 모두 타입이 달라
-		       구분이 가능한 객체라면 index 속성을 설정할 필요가 없다. -->
 		<constructor-arg index="0" ref="jmsMessageSender" />
-			<!-- ref 속성 : 빈에 참조를 전달 -->
 		<constructor-arg index="1" ref="emailMessageSender" />
-		<constructor-arg index="2" ref="webServiceInvoker" /> 
+		<property name="webServiceInvoker" ref="webServiceInvoker" /> 
 	</bean>
 	
 	<bean id="jmsMessageSender" class="JmsMessageSender">
